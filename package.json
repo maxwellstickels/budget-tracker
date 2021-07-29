@@ -4,21 +4,15 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "lite-server": "lite-server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/coding-boot-camp/unit18hw.git"
+    "start:prod": "npm run build && node server.js",
+    "start:dev": "concurrently \"npm run server\" \"cd client && npm run start\"",
+    "server": "nodemon server.js --ignore client",
+    "build": "cd client && npm run build",
+    "client": "cd client && npm start"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/coding-boot-camp/unit18hw/issues"
-  },
-  "homepage": "https://github.com/coding-boot-camp/unit18hw#readme",
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.17.1",
@@ -32,6 +26,8 @@
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
     "babel-loader": "^8.2.2",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.7.2"
   }
